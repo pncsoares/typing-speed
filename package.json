@@ -1,0 +1,27 @@
+{
+    "name": "typing-speed",
+    "description": "Test your typing speed and train to improve it",
+    "version": "1.0.0",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/pncsoares/typing-speed.git"
+    },
+    "keywords": [
+        "typing",
+        "speed",
+        "typing-speed"
+    ],
+    "author": "Pedro Soares",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/pncsoares/typing-speed/issues"
+    },
+    "homepage": "https://github.com/pncsoares/typing-speed#readme",
+    "devDependencies": {
+        "prettier": "2.7.1"
+    }
+}
