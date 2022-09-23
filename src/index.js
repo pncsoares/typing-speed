@@ -1,14 +1,54 @@
 const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random';
 
+const timerElement = document.getElementById('timer');
 const quoteDisplayElement = document.getElementById('quoteDisplay');
 const quoteInputElement = document.getElementById('quoteInput');
-const timerElement = document.getElementById('timer');
+const resultsElement = document.getElementById('results');
 
-const finishedAndCorrect = true;
+let inProgress = false;
+
+function start() {
+    startTimer();
+}
+
+function stop() {
+    inProgress = false;
+
+    stopTimer();
+    showResults();
+    renderNewQuote();
+}
+
+function showResults() {
+    const wpm = calculateWordsPerMinute();
+
+    const results = `${time} seconds\n${wpm} words per minute`;
+    resultsElement.innerText = results;
+    resultsElement.classList.add('blink');
+
+    setInterval(() => {
+        resultsElement.classList.remove('blink');
+    }, 3000);
+}
+
+function calculateWordsPerMinute() {
+    return Math.floor(quoteLength / 5 / (time / 60));
+}
+
+let strokesNumber = 0;
 
 quoteInputElement.addEventListener('input', () => {
+    if (!inProgress) {
+        inProgress = true;
+        start();
+    }
+
+    strokesNumber++;
+
     const quoteArray = quoteDisplayElement.querySelectorAll('span');
     const valueArray = quoteInputElement.value.split('');
+
+    let finishedAndCorrect = true;
 
     quoteArray.forEach((characterSpan, index) => {
         const character = valueArray[index];
@@ -28,7 +68,7 @@ quoteInputElement.addEventListener('input', () => {
     });
 
     if (finishedAndCorrect) {
-        renderNewQuote();
+        stop();
     }
 });
 
@@ -38,8 +78,13 @@ function getRandomQuote() {
         .then(data => data.content);
 }
 
+let quoteLength;
+
 async function renderNewQuote() {
     const quote = await getRandomQuote();
+
+    quoteLength = quote.length;
+
     quoteDisplayElement.innerHTML = '';
 
     quote.split('').forEach(character => {
@@ -49,18 +94,25 @@ async function renderNewQuote() {
     });
 
     quoteInputElement.value = null;
-    startTimer();
 }
 
 let startTime;
+let time;
+let timerInterval;
 
 function startTimer() {
     timerElement.innerText = 0;
     startTime = new Date();
 
-    setInterval(() => {
-        timerElement.innerText = getTimerTime();
+    timerInterval = window.setInterval(() => {
+        time = getTimerTime();
+        timerElement.innerText = time;
     }, 1000);
+}
+
+function stopTimer() {
+    window.clearInterval(timerInterval);
+    startTime = null;
 }
 
 function getTimerTime() {
