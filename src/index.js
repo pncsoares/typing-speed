@@ -20,8 +20,8 @@ function stop() {
 }
 
 function assembleResults() {
-  const wpm = calculateWordsPerMinute();
-  return `${time} seconds\n${wpm} words per minute\n${errors} errors`;
+    const wpm = calculateWordsPerMinute();
+    return `${time} seconds\n${wpm} words per minute\n${errors} errors`;
 }
 
 function showResults() {
