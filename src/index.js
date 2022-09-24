@@ -19,10 +19,13 @@ function stop() {
     renderNewQuote();
 }
 
-function showResults() {
-    const wpm = calculateWordsPerMinute();
+function assembleResults() {
+  const wpm = calculateWordsPerMinute();
+  return `${time} seconds\n${wpm} words per minute\n${errors} errors`;
+}
 
-    const results = `${time} seconds\n${wpm} words per minute`;
+function showResults() {
+    const results = assembleResults();
     resultsElement.innerText = results;
     resultsElement.classList.add('blink');
 
@@ -36,6 +39,7 @@ function calculateWordsPerMinute() {
 }
 
 let strokesNumber = 0;
+let errors = 0;
 
 quoteInputElement.addEventListener('input', () => {
     if (!inProgress) {
@@ -64,6 +68,7 @@ quoteInputElement.addEventListener('input', () => {
             characterSpan.classList.remove('correct');
             characterSpan.classList.add('incorrect');
             finishedAndCorrect = false;
+            errors++;
         }
     });
 
