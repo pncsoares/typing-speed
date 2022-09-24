@@ -12,16 +12,23 @@ function start() {
 }
 
 function stop() {
-    inProgress = false;
-
     stopTimer();
     showResults();
+    resetProperties();
     renderNewQuote();
+}
+
+function resetProperties() {
+    quoteLength = 0;
+    inProgress = false;
+    strokesNumber = 0;
+    errors = 0;
 }
 
 function assembleResults() {
     const wpm = calculateWordsPerMinute();
-    return `${time} seconds\n${wpm} words per minute\n${errors} errors`;
+    const accuracy = calculateAccuracy();
+    return `${time} seconds\n${wpm} words per minute\n${errors} errors\n${accuracy}% accuracy`;
 }
 
 function showResults() {
@@ -36,6 +43,10 @@ function showResults() {
 
 function calculateWordsPerMinute() {
     return Math.floor(quoteLength / 5 / (time / 60));
+}
+
+function calculateAccuracy() {
+    return Math.floor((quoteLength / strokesNumber) * 100);
 }
 
 let strokesNumber = 0;
