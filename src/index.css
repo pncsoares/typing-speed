@@ -1,11 +1,13 @@
 :root {
-    --font: 'Courier New', Courier, monospace;
+    --font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     --black: #000000;
-    --white: #ffffff;
+    --white: #d0d0d0;
     --light-gray: #898b8f;
     --dark-gray: #535353;
-    --green: #82cc6d;
-    --red: #ee5842;
+    --lime: #99f849;
+    --green: #6aff98;
+    --red: #ff5932;
+    --yellow: #efd81c;
 }
 
 * {
@@ -14,29 +16,32 @@
 }
 
 body {
+    background-color: var(--black);
+    margin: 0;
+}
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    margin: 0;
-    background-color: var(--black);
-}
-
-.container {
-    background-color: var(--black);
-    color: var(--white);
-    padding: 1rem;
-    border-radius: 0.5rem;
-    width: 700px;
-    max-width: 90%;
 }
 
 .timer {
     position: absolute;
     top: 4rem;
     font-size: 3rem;
-    color: var(--light-gray);
+    color: var(--yellow);
     font-weight: bold;
+}
+
+.quote {
+    background-color: var(--black);
+    color: var(--light-gray);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    width: 700px;
+    max-width: 90%;
 }
 
 .quote-display {
@@ -68,7 +73,7 @@ body {
 }
 
 .correct {
-    color: var(--green);
+    color: var(--dark-gray);
 }
 
 .incorrect {
@@ -76,13 +81,35 @@ body {
     text-decoration: underline;
 }
 
-.results {
-    color: var(--light-gray);
+.statistics {
     position: absolute;
-    bottom: 8rem;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 3rem;
+    flex-flow: row wrap;
+    margin-bottom: 2rem;
+    visibility: hidden;
+}
+
+.round-statistics,
+.global-statistics {
+    display: flex;
+    flex-direction: column;
+}
+
+.statistics-title {
+    color: var(--yellow);
     font-size: 1.5rem;
-    font-weight: bold;
-    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.statistics-label {
+    color: var(--dark-gray);
+    font-size: 1.2rem;
 }
 
 .blink {

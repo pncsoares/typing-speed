@@ -20,23 +20,54 @@
     </head>
 
     <body>
-        <div
-            id="timer"
-            class="timer"></div>
         <div class="container">
             <div
-                id="quoteDisplay"
-                class="quote-display"></div>
-            <textarea
-                id="quoteInput"
-                class="quote-input"
-                placeholder="Start typing..."
-                spellcheck="false"
-                onpaste="return false;"
-                autofocus></textarea>
+                id="timer"
+                class="timer"></div>
+            <div class="quote">
+                <div
+                    id="quoteDisplay"
+                    class="quote-display"></div>
+                <textarea
+                    id="quoteInput"
+                    class="quote-input"
+                    placeholder="Start typing..."
+                    spellcheck="false"
+                    onpaste="return false;"
+                    autofocus></textarea>
+            </div>
+            <div class="statistics">
+                <div class="round-statistics">
+                    <label class="statistics-title">Round</label>
+                    <label
+                        id="timeElapsed"
+                        class="statistics-label"></label>
+                    <label
+                        id="wordsPerMinute"
+                        class="statistics-label"></label>
+                    <label
+                        id="errors"
+                        class="statistics-label"></label>
+                    <label
+                        id="accuracy"
+                        class="statistics-label"></label>
+                </div>
+                <div class="global-statistics">
+                    <label class="statistics-title">Global</label>
+                    <label
+                        id="highestWordsPerMinute"
+                        class="statistics-label"></label>
+                    <label
+                        id="averageWordsPerMinute"
+                        class="statistics-label"></label>
+                    <label
+                        id="highestAccuracy"
+                        class="statistics-label"></label>
+                    <label
+                        id="averageAccuracy"
+                        class="statistics-label"></label>
+                </div>
+            </div>
         </div>
-        <div
-            id="results"
-            class="results"></div>
     </body>
 </html>
