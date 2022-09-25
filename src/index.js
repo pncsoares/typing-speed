@@ -104,7 +104,9 @@ function calculateAccuracy() {
         highestAccuracy = accuracy;
     }
 
-    averageAccuracy = Math.floor(accuracyArray.reduce((a, b) => a + b, 0) / accuracyArray.length);
+    averageAccuracy = Math.floor(
+        accuracyArray.reduce((a, b) => a + b, 0) / accuracyArray.length
+    );
 
     return accuracy;
 }
@@ -157,15 +159,20 @@ function loadSavedStatistics() {
     }
 
     if (
-        highestWpm !== null && highestWpm !== undefined &&
-        averageWpm !== null && averageWpm !== undefined &&
+        highestWpm !== null &&
+        highestWpm !== undefined &&
+        averageWpm !== null &&
+        averageWpm !== undefined &&
         wpmArray.length > 0 &&
-        highestAccuracy !== null && highestAccuracy !== undefined &&
-        averageAccuracy !== null && averageAccuracy !== undefined &&
-        accuracyArray.length > 0) {
-            statisticsItemElements[1].style.visibility = 'visible'; // global statistics
-            showGlobalStatistics();
-        }
+        highestAccuracy !== null &&
+        highestAccuracy !== undefined &&
+        averageAccuracy !== null &&
+        averageAccuracy !== undefined &&
+        accuracyArray.length > 0
+    ) {
+        statisticsItemElements[1].style.visibility = 'visible'; // global statistics
+        showGlobalStatistics();
+    }
 }
 
 let strokesNumber = 0;
