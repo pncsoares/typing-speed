@@ -215,9 +215,26 @@ quoteInputElement.addEventListener('input', () => {
 });
 
 function getRandomQuote() {
+    addLoading();
+
     return fetch(RANDOM_QUOTE_API_URL)
         .then(response => response.json())
-        .then(data => data.content);
+        .then(data => data.content)
+        .finally(() => {
+            removeLoading();
+        });
+}
+
+function addLoading() {
+    const loadingDiv = document.createElement('div');
+    loadingDiv.setAttribute('id', 'loadingDiv');
+    loadingDiv.innerHTML = '<div class="loading">Loading...</div>';
+    document.body.appendChild(loadingDiv);
+}
+
+function removeLoading() {
+    const loadingDiv = document.getElementById('loadingDiv');
+    loadingDiv.remove();
 }
 
 let quoteLength;
@@ -261,5 +278,5 @@ function getTimerTime() {
     return Math.floor((new Date() - startTime) / 1000);
 }
 
-loadSavedStatistics();
 renderNewQuote();
+loadSavedStatistics();
