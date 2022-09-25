@@ -92,13 +92,13 @@ body {
     gap: 3rem;
     flex-flow: row wrap;
     margin-bottom: 2rem;
-    visibility: hidden;
 }
 
 .round-statistics,
 .global-statistics {
     display: flex;
     flex-direction: column;
+    visibility: hidden;
 }
 
 .statistics-title {

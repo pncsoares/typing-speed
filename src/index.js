@@ -4,6 +4,7 @@ const timerElement = document.getElementById('timer');
 const quoteDisplayElement = document.getElementById('quoteDisplay');
 const quoteInputElement = document.getElementById('quoteInput');
 const statisticsElements = document.querySelectorAll('.statistics');
+const statisticsItemElements = document.querySelectorAll('.statistics-item');
 
 // round statistics
 const timeElapsedElement = document.getElementById('timeElapsed');
@@ -26,6 +27,7 @@ function start() {
 function stop() {
     stopTimer();
     showStatistics();
+    saveStatistics();
     resetProperties();
     renderNewQuote();
 }
@@ -42,12 +44,15 @@ function showStatistics() {
     showGlobalStatistics();
 
     statisticsElements.forEach(element => {
-        element.style.visibility = 'visible';
         element.classList.add('blink');
 
         setInterval(() => {
             element.classList.remove('blink');
         }, 3000);
+    });
+
+    statisticsItemElements.forEach(element => {
+        element.style.visibility = 'visible';
     });
 }
 
@@ -102,6 +107,65 @@ function calculateAccuracy() {
     averageAccuracy = Math.floor(accuracyArray.reduce((a, b) => a + b, 0) / accuracyArray.length);
 
     return accuracy;
+}
+
+function saveStatistics() {
+    localStorage.highestWpm = highestWpm;
+    localStorage.averageWpm = averageWpm;
+    localStorage.wpmArray = JSON.stringify(wpmArray);
+
+    localStorage.highestAccuracy = highestAccuracy;
+    localStorage.averageAccuracy = averageAccuracy;
+    localStorage.accuracyArray = JSON.stringify(accuracyArray);
+}
+
+function loadSavedStatistics() {
+    const tempHighestWpm = localStorage.highestWpm;
+
+    if (tempHighestWpm !== null && tempHighestWpm !== undefined) {
+        highestWpm = tempHighestWpm;
+    }
+
+    const tempAverageWpm = localStorage.averageWpm;
+
+    if (tempAverageWpm !== null && tempAverageWpm !== undefined) {
+        averageWpm = tempAverageWpm;
+    }
+
+    const tempWpmArray = localStorage.wpmArray;
+
+    if (tempWpmArray !== null && tempWpmArray?.length > 0) {
+        wpmArray = JSON.parse(tempWpmArray);
+    }
+
+    const tempHighestAccuracy = localStorage.highestAccuracy;
+
+    if (tempHighestAccuracy !== null && tempHighestAccuracy !== undefined) {
+        highestAccuracy = tempHighestAccuracy;
+    }
+
+    const tempAverageAccuracy = localStorage.averageAccuracy;
+
+    if (tempAverageAccuracy !== null && tempAverageAccuracy !== undefined) {
+        averageAccuracy = tempAverageAccuracy;
+    }
+
+    const tempAccuracyArray = localStorage.accuracyArray;
+
+    if (tempAccuracyArray !== null && tempAccuracyArray?.length > 0) {
+        accuracyArray = JSON.parse(tempAccuracyArray);
+    }
+
+    if (
+        highestWpm !== null && highestWpm !== undefined &&
+        averageWpm !== null && averageWpm !== undefined &&
+        wpmArray.length > 0 &&
+        highestAccuracy !== null && highestAccuracy !== undefined &&
+        averageAccuracy !== null && averageAccuracy !== undefined &&
+        accuracyArray.length > 0) {
+            statisticsItemElements[1].style.visibility = 'visible'; // global statistics
+            showGlobalStatistics();
+        }
 }
 
 let strokesNumber = 0;
@@ -190,4 +254,5 @@ function getTimerTime() {
     return Math.floor((new Date() - startTime) / 1000);
 }
 
+loadSavedStatistics();
 renderNewQuote();
