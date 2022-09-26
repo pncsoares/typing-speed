@@ -232,6 +232,22 @@ async function getRandomQuote() {
         .finally(() => removeLoading());
 }
 
+const NUMBER_OF_WORDS = 15;
+
+async function getRandomWords() {
+    addLoading();
+
+    await sleep();
+
+    return fetch('../data/words-en.json')
+        .then(response => response.json())
+        .then(data => {
+            const shuffledArray = shuffleArray(data.words);
+            return getItems(shuffledArray, NUMBER_OF_WORDS);
+        })
+        .finally(() => removeLoading());
+}
+
 function addLoading() {
     const loadingDiv = document.createElement('div');
     loadingDiv.setAttribute('id', 'loadingDiv');
