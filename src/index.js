@@ -33,8 +33,8 @@ function stop() {
 function resetProperties() {
     quoteLength = 0;
     inProgress = false;
-    strokesNumber = 0;
-    errors = 0;
+    strokesCount = 0;
+    errorsCount = 0;
 }
 
 function showStatistics() {
@@ -60,7 +60,7 @@ function showRoundStatistics() {
 
     timeElapsedElement.innerText = `Elapsed time: ${time}`;
     wordsPerMinuteElement.innerText = `Words per minute: ${wpm}`;
-    errorsElement.innerText = `Errors: ${errors}`;
+    errorsElement.innerText = `Errors: ${errorsCount}`;
     accuracyElement.innerText = `Accuracy: ${accuracy}%`;
 }
 
@@ -94,7 +94,7 @@ let averageAccuracy = 0;
 let accuracyArray = [];
 
 function calculateAccuracy() {
-    const accuracy = Math.floor((quoteLength / strokesNumber) * 100);
+    const accuracy = Math.floor((quoteLength / strokesCount) * 100);
 
     accuracyArray.push(accuracy);
 
@@ -173,8 +173,8 @@ function loadSavedStatistics() {
     }
 }
 
-let strokesNumber = 0;
-let errors = 0;
+let strokesCount = 0;
+let errorsCount = 0;
 
 quoteInputElement.addEventListener('input', () => {
     if (!inProgress) {
@@ -182,7 +182,7 @@ quoteInputElement.addEventListener('input', () => {
         start();
     }
 
-    strokesNumber++;
+    strokesCount++;
 
     const quoteArray = quoteDisplayElement.querySelectorAll('span');
     const valueArray = quoteInputElement.value.split('');
@@ -203,7 +203,7 @@ quoteInputElement.addEventListener('input', () => {
             characterSpan.classList.remove('correct');
             characterSpan.classList.add('incorrect');
             finishedAndCorrect = false;
-            errors++;
+            errorsCount++;
         }
     });
 
