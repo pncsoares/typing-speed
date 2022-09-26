@@ -6,7 +6,13 @@ Challenge yourself! 💪
 
 ![black cat typing](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
 
-### You will be able to see
+# Status
+
+⚠️ Currently in stand-by because the API that I am using is returning 503 when requested:
+
+![api-error](./images/api-error.png)
+
+# Features
 
 #### Round statistics
 
