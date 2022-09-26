@@ -6,14 +6,6 @@ Challenge yourself! 💪
 
 ![black cat typing](https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif)
 
-# Status
-
-⚠️ Currently in stand-by because the API that I am using is returning 503 when requested:
-
-![api-error](./images/api-error.png)
-
-GitHub issue: https://github.com/lukePeavey/quotable/issues/157
-
 # Features
 
 #### Round statistics

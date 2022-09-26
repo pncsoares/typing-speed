@@ -1,5 +1,3 @@
-const RANDOM_QUOTE_API_URL = 'https://api.quotable.io/random';
-
 const timerElement = document.getElementById('timer');
 const quoteDisplayElement = document.getElementById('quoteDisplay');
 const quoteInputElement = document.getElementById('quoteInput');
@@ -214,15 +212,18 @@ quoteInputElement.addEventListener('input', () => {
     }
 });
 
-function getRandomQuote() {
+async function getRandomQuote() {
     addLoading();
 
-    return fetch(RANDOM_QUOTE_API_URL)
+    await sleep();
+
+    return fetch('../data/quotes-en.json')
         .then(response => response.json())
-        .then(data => data.content)
-        .finally(() => {
-            removeLoading();
-        });
+        .then(data => {
+            const shuffledArray = shuffleArray(data.quotes);
+            return getItem(shuffledArray, 1);
+        })
+        .finally(() => removeLoading());
 }
 
 function addLoading() {
@@ -235,6 +236,22 @@ function addLoading() {
 function removeLoading() {
     const loadingDiv = document.getElementById('loadingDiv');
     loadingDiv.remove();
+}
+
+async function sleep() {
+    await new Promise(r => setTimeout(r, 500));
+}
+
+function shuffleArray(array) {
+    return array.sort(() => 0.5 - Math.random());
+}
+
+function getItem(array, numberOfItems) {
+    return array.slice(0, numberOfItems)[0];
+}
+
+function getItems(array, numberOfItems) {
+    return array.slice(0, numberOfItems).join(' ');
 }
 
 let quoteLength;
