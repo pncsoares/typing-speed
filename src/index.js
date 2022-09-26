@@ -81,7 +81,10 @@ function calculateWordsPerMinute() {
     wpmArray.push(wpm);
 
     if (wpm > highestWpm) {
+        addAllTimeHighTag(wordsPerMinuteElement);
         highestWpm = wpm;
+    } else {
+        removeAllTimeHighTag(wordsPerMinuteElement);
     }
 
     averageWpm = Math.floor(wpmArray.reduce((a, b) => a + b, 0) / wpmArray.length);
@@ -99,7 +102,10 @@ function calculateAccuracy() {
     accuracyArray.push(accuracy);
 
     if (accuracy > highestAccuracy) {
+        addAllTimeHighTag(accuracyElement);
         highestAccuracy = accuracy;
+    } else {
+        removeAllTimeHighTag(accuracyElement);
     }
 
     averageAccuracy = Math.floor(
@@ -235,7 +241,7 @@ function addLoading() {
 
 function removeLoading() {
     const loadingDiv = document.getElementById('loadingDiv');
-    loadingDiv.remove();
+    loadingDiv?.remove();
 }
 
 async function sleep() {
@@ -252,6 +258,16 @@ function getItem(array, numberOfItems) {
 
 function getItems(array, numberOfItems) {
     return array.slice(0, numberOfItems).join(' ');
+}
+
+function addAllTimeHighTag(element) {
+    const span = document.getElementById(`allTimeHighSpan_${element.id}`);
+    span.style.display = 'inline-block';
+}
+
+function removeAllTimeHighTag(element) {
+    const span = document.getElementById(`allTimeHighSpan_${element.id}`);
+    span.style.display = 'none';
 }
 
 let quoteLength;
