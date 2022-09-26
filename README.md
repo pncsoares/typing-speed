@@ -12,7 +12,7 @@ Challenge yourself! 💪
 
 ![api-error](./images/api-error.png)
 
-Github issue: https://github.com/lukePeavey/quotable/issues/157
+GitHub issue: https://github.com/lukePeavey/quotable/issues/157
 
 # Features
 
