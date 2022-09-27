@@ -27,7 +27,7 @@ Challenge yourself! 💪
 | Browser | Is compatible |
 | -- | -- |
 | Google Chrome | ✅ |
-| Safari | ❌ |
+| Safari | ✅ |
 | Brave | ✅ |
 | Mozilla Firefox | ✅ |
 | Microsoft Edge | ✅ |
