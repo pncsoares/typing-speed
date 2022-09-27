@@ -277,13 +277,23 @@ function getItems(array, numberOfItems) {
 }
 
 function addAllTimeHighTag(element) {
-    const span = document.getElementById(`allTimeHighSpan_${element.id}`);
-    span.style.display = 'inline-block';
+    const span = getAllTimeHighSpan(element);
+
+    if (span !== null) {
+        span.style.visibility = 'visible';
+    }
 }
 
 function removeAllTimeHighTag(element) {
-    const span = document.getElementById(`allTimeHighSpan_${element.id}`);
-    span.style.display = 'none';
+    const span = getAllTimeHighSpan(element);
+
+    if (span !== null) {
+        span.style.visibility = 'hidden';
+    }
+}
+
+function getAllTimeHighSpan(element) {
+    return document.getElementById(`allTimeHighSpan_${element.id}`);
 }
 
 let quoteLength;

@@ -144,7 +144,8 @@ body {
 }
 
 .all-time-high {
-    display: none;
+    visibility: hidden;
+    display: inline-block;
     background-color: var(--yellow);
     border-radius: 0.5rem;
     margin-left: 10px;
